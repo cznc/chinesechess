@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.chinesechess.core.ConstantEnv;
 import com.chinesechess.core.Pannel;
+import com.chinesechess.core.Scene;
+import com.chinesechess.core.SceneCenter;
+import com.chinesechess.core.User;
 import com.chinesechess.core.util.ResponseUtil;
 
 /**
  * Servlet implementation class StepServlet
  */
-@WebServlet("/init")
+@WebServlet("/api/init")
 public class InitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,16 +36,16 @@ public class InitServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pannel chess = (Pannel)request.getSession().getAttribute(ConstantEnv.SESSION_ATTR_PANNEL);
-		if(chess==null) {
-			chess = new Pannel();
-			request.getSession().setAttribute(ConstantEnv.SESSION_ATTR_PANNEL,chess);
-		}
+		SceneCenter center = (SceneCenter)request.getSession().getServletContext().getAttribute(ConstantEnv.APPLICATION_ATTR_SCENECENTER);
+		User user= (User)request.getSession().getAttribute(ConstantEnv.SESSION_ATTR_USER);
+		Scene scene=center.getByUserId(user.getId());
+		Pannel chess = scene.getChess();
+		
 		byte[] table=chess.getTable();
 		Map<String,Object>data=new HashMap<String,Object>();
 		data.put("table", table);
-		data.put("color", 1);//我的是哪个颜色
-		data.put("turn", 1);//是不是该我走棋了
+		data.put("color", scene.getUserColor(user.getId()));//我的是哪个颜色
+		data.put("turn", scene.isMyTurn(user.getId()));//是不是该我走棋了
 		
 		String json = ResponseUtil.toJson(data);
 		response.getWriter().append(json);

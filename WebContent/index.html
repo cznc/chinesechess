@@ -82,9 +82,9 @@ const empty=''
 const noselected=-2
 const myturn=0
 const otherturn=1
-const stepUrl = 'step'
-const initUrl = 'init'
-const hbUrl = 'hb'
+const stepUrl = 'api/step'
+const initUrl = 'api/init'
+const hbUrl = 'api/hb'
 var vm = new Vue({
 	el: '#app',
 	data() {
@@ -105,11 +105,12 @@ var vm = new Vue({
 			textotherturn:'=>',
 			whoseturn:0,
 			timer:'',
+			signupDialogVisible: false,
 		}
 	},
 	mounted() {
 		this.init()
-		this.timer = setInterval(this.heartbeaing, 1000);
+		//this.timer = setInterval(this.heartbeaing, 1000);
 	},
     beforeDestroy() {
 		clearInterval(this.timer);
@@ -117,6 +118,9 @@ var vm = new Vue({
 	methods: {
 		init:function(){
 			this.initActionSubmit()
+		},
+		signup(){
+			
 		},
 		clickIitem:function(e){
 			var id=e.target.parentNode.id.substr(4)
@@ -222,6 +226,10 @@ var vm = new Vue({
 				initUrl,
 				{},
 				function (resp) {
+					if(resp.status){//表示需要signup
+						this.signupDialogVisible=true;
+						return;
+					}
 					console.log(resp)
 					for (var i = 0; i < resp.table.length; i++) {
 						if(resp.table[i]==0){

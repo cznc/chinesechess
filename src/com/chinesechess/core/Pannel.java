@@ -1,9 +1,14 @@
 package com.chinesechess.core;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
-
-public class Pannel{//棋盘:将,士,象,马,车,炮,兵
+/**
+ * 棋盘:将,士,象,马,车,炮,兵
+ * */
+public class Pannel implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
  final byte I0=17;//兵/卒
  final byte I1=11;//将/帅
  final byte I2=12;//士/仕
