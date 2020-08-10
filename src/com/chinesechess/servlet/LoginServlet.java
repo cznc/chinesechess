@@ -1,6 +1,8 @@
 package com.chinesechess.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chinesechess.core.Constant;
 import com.chinesechess.core.ConstantEnv;
-import com.chinesechess.core.Pannel;
-import com.chinesechess.core.Response;
-import com.chinesechess.core.Scene;
 import com.chinesechess.core.SceneCenter;
 import com.chinesechess.core.User;
 import com.chinesechess.core.util.ResponseUtil;
@@ -37,25 +35,29 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SceneCenter center = (SceneCenter)request.getSession().getServletContext().getAttribute(ConstantEnv.APPLICATION_ATTR_SCENECENTER);
-		User user= (User)request.getSession().getAttribute(ConstantEnv.SESSION_ATTR_USER);
-		Scene scene=center.getByUserId(user.getId());
-		Pannel chess = scene.getChess();
 		
 		String action = request.getParameter("action");
-		if("quit".equals(action)) {
-			center.quitScene(user.getId());
-		}else if("add".equals(action)) {
-			Integer id=Integer.parseInt(request.getParameter("id"));
-			center.add2Scene(id, user.getId());
-		}else if("create".equals(action)) {
-			center.createScene(user.getId());
+		if("create".equals(action)) {
+			String nickname=request.getParameter("nickname");
+			if(nickname==null||nickname.trim().equals(""))nickname="嚯嚯";
+			User user= new User();
+			user.setId(center.getUserIdSequence());
+			user.setName(nickname);
+			request.getSession().setAttribute(ConstantEnv.SESSION_ATTR_USER,user);
+
+			Map<String,Object>data=new HashMap<String,Object>(){/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+			{
+				put("user",user);
+			}};
+			String json = ResponseUtil.toJson(data);
+			response.getWriter().append(json);
+			return;
 		}
-		Response resp=new Response();
-		resp.setMsg("ok.");
-		resp.setStatus(Constant.RESPONSE_SUCCESS);
-		String json = ResponseUtil.toJson(resp);
-		response.getWriter().append(json);
-		return;
+		
 	}
 
 	/**

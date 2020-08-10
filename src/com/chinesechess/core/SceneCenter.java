@@ -13,6 +13,15 @@ public class SceneCenter implements Serializable{
 	
 	private Integer sceneIdSeqence=0;
 	private Integer userIdSequence=0;
+	/**
+	 * 不该放在这里,暂时
+	 * */
+	public Integer getUserIdSequence() {
+		synchronized (userIdSequence) {
+			userIdSequence++;
+			return userIdSequence;
+		}
+	}
 	private Map<Integer, Scene> centerByUser=new HashMap<Integer, Scene>();
 	private Map<Integer, Scene> centerById=new HashMap<Integer, Scene>();
 	/**
