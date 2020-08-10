@@ -18,7 +18,7 @@ import com.chinesechess.core.User;
 import com.chinesechess.core.util.ResponseUtil;
 
 /**
- * Ê×´ÎÊ¹ÓÃÊ±ĞÂ½¨×Ô¼ºÕÊºÅ¡¢×¢Ïú×Ô¼ºµÈ¶¯×÷
+ * é¦–æ¬¡ä½¿ç”¨æ—¶æ–°å»ºè‡ªå·±å¸å·ã€æ³¨é”€è‡ªå·±ç­‰åŠ¨ä½œ
  */
 @WebServlet("/api/login")
 public class LoginServlet extends HttpServlet {

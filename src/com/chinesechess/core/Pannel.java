@@ -4,31 +4,31 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 /**
- * ÆåÅÌ:½«,Ê¿,Ïó,Âí,³µ,ÅÚ,±ø
+ * æ£‹ç›˜:å°†,å£«,è±¡,é©¬,è½¦,ç‚®,å…µ
  * */
 public class Pannel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
- final byte I0=17;//±ø/×ä
- final byte I1=11;//½«/Ë§
- final byte I2=12;//Ê¿/ÊË
- final byte I3=13;//Ïà/Ïó
- final byte I4=14;//Âí/Âë
- final byte I5=15;//³µ/íº
- final byte I6=16;//ÅÚ/Åİ
+ final byte I0=17;//å…µ/å’
+ final byte I1=11;//å°†/å¸…
+ final byte I2=12;//å£«/ä»•
+ final byte I3=13;//ç›¸/è±¡
+ final byte I4=14;//é©¬/ç 
+ final byte I5=15;//è½¦/ç —
+ final byte I6=16;//ç‚®/æ³¡
  final byte[] F={11,12,12,13,13,14,14,15,15,16,16,17,17,17,17,17,-11,-12,-12,-13,-13,-14,-14,-15,-15,-16,-16,-17,-17,-17,-17,-17};
- final static byte EMPTY=-1;//empty Ã»ÓĞ×Ó
- final static byte COVERED=0;//covered Î´·­
+ final static byte EMPTY=-1;//empty æ²¡æœ‰å­
+ final static byte COVERED=0;//covered æœªç¿»
 
  final static byte W=8;
  final static byte H=4;
 
- byte[]table=new byte[W*H];//ÆåÅÌ£¬ÔªËØÊÇÆå×ÓÖÖÀàid,0±íÊ¾Î´·­,-1±íÊ¾ÎŞ×Ó; ³õÊ¼»¯,²ÉÓÃ·­Ò»´ÎËæ»ú²úÉú;
+ byte[]table=new byte[W*H];//æ£‹ç›˜ï¼Œå…ƒç´ æ˜¯æ£‹å­ç§ç±»id,0è¡¨ç¤ºæœªç¿»,-1è¡¨ç¤ºæ— å­; åˆå§‹åŒ–,é‡‡ç”¨ç¿»ä¸€æ¬¡éšæœºäº§ç”Ÿ;
  
- byte[]items=new byte[W*H];//Æå´ü,·­Ò»¸ö=´ÓÀïÃæÃşÒ»¸ö³öÀ´
- byte remain=(byte)items.length;//Î´·­µÄÆåµÄ¸öÊı
- Random rand = new Random();//·­ÆåÊ±Ëæ»úÊı
- //³õÊ¼»¯ÆåÅÌÆå´ü
+ byte[]items=new byte[W*H];//æ£‹è¢‹,ç¿»ä¸€ä¸ª=ä»é‡Œé¢æ‘¸ä¸€ä¸ªå‡ºæ¥
+ byte remain=(byte)items.length;//æœªç¿»çš„æ£‹çš„ä¸ªæ•°
+ Random rand = new Random();//ç¿»æ£‹æ—¶éšæœºæ•°
+ //åˆå§‹åŒ–æ£‹ç›˜æ£‹è¢‹
  public void init(){
   Arrays.fill(table, COVERED);
   System.arraycopy(F,0,items,0,F.length);
@@ -41,24 +41,24 @@ public class Pannel implements Serializable {
 	 return table;
  }
  /**
-  * ·­Æå
-  * @return ·­³öÀ´µÄÆå×Ó£¬0=²»ÊÇÎ´·­×Ó
+  * ç¿»æ£‹
+  * @return ç¿»å‡ºæ¥çš„æ£‹å­ï¼Œ0=ä¸æ˜¯æœªç¿»å­
   * **/
  public byte discover(byte n){
-   if(this.table[n]!=COVERED) return 0;//²»ÊÇÎ´·­×Ó
-   byte p=(byte)rand.nextInt(remain);//²úÉúËæ»úÊı
-   byte v=(byte)items[p];//´ÓÊ£ÓàÆå×ÓÖĞÃşÒ»¸ö³öÀ´
-   System.arraycopy(items,p+1,items,p,remain-p-1);//Êı×éÍùÇ°ÒÆ
-   remain--;//ÊıÁ¿¼õÉÙ1¸ö
-   setItem(n,v);//ÉèÖÃµ±Ç°Î»ÖÃµÄÆå×Ó
+   if(this.table[n]!=COVERED) return 0;//ä¸æ˜¯æœªç¿»å­
+   byte p=(byte)rand.nextInt(remain);//äº§ç”Ÿéšæœºæ•°
+   byte v=(byte)items[p];//ä»å‰©ä½™æ£‹å­ä¸­æ‘¸ä¸€ä¸ªå‡ºæ¥
+   System.arraycopy(items,p+1,items,p,remain-p-1);//æ•°ç»„å¾€å‰ç§»
+   remain--;//æ•°é‡å‡å°‘1ä¸ª
+   setItem(n,v);//è®¾ç½®å½“å‰ä½ç½®çš„æ£‹å­
    return v;
  }
  /**
-  * ×ßÒ»²½:ÒÆ×Ó,³Ô×Ó,¶Ò×Ó
+  * èµ°ä¸€æ­¥:ç§»å­,åƒå­,å…‘å­
   * @param n=from
   * @param m=to
-  * @param isBlue:blue ·½´óÓÚ0
-  * @return 1=ÒÆ¶¯,2=¶ÒÈ¥;Òì³£Çé¿ö:3=Â·Ïß²»ºÏ·¨¶È,4=´óĞ¡²»ºÏ·¨¶È,5=Ö÷¶¯×ÓÊÇ¿Õ¸ñ×Ó»òÎ´·­×Ó»òÊÇ¶Ô·½µÄ,6=±»¶¯×ÓÊÇ¼º·½»òÖ÷¶¯×ÓÎªÅÚµ«±»¶¯×Ó¿Õ¸ñ×Ó»òÎ´·­×Ó
+  * @param isBlue:blue æ–¹å¤§äº0
+  * @return 1=ç§»åŠ¨,2=å…‘å»;å¼‚å¸¸æƒ…å†µ:3=è·¯çº¿ä¸åˆæ³•åº¦,4=å¤§å°ä¸åˆæ³•åº¦,5=ä¸»åŠ¨å­æ˜¯ç©ºæ ¼å­æˆ–æœªç¿»å­æˆ–æ˜¯å¯¹æ–¹çš„,6=è¢«åŠ¨å­æ˜¯å·±æ–¹æˆ–ä¸»åŠ¨å­ä¸ºç‚®ä½†è¢«åŠ¨å­ç©ºæ ¼å­æˆ–æœªç¿»å­
   * **/
  public final static byte SUCC_MOV=1;
  public final static byte SUCC_GONE=2;
@@ -68,113 +68,113 @@ public class Pannel implements Serializable {
  public final static byte ERR_PASSIVE=6;
  public byte other(byte n,byte m,boolean isBlue) {
 	 byte vn=getItem(n);
-	 if(vn==EMPTY)return ERR_ACTIVE;//Ö÷¶¯×ÓÎª¿Õ¸ñ×Ó
-	 if(vn==COVERED)return ERR_ACTIVE;//Ö÷¶¯×ÓÎªÎ´·­×Ó
-//	 if((isBlue && vn<0)||(!isBlue && vn>0))return ERR_ACTIVE;//Ö÷¶¯×ÓÎª¶Ô·½×Ó
+	 if(vn==EMPTY)return ERR_ACTIVE;//ä¸»åŠ¨å­ä¸ºç©ºæ ¼å­
+	 if(vn==COVERED)return ERR_ACTIVE;//ä¸»åŠ¨å­ä¸ºæœªç¿»å­
+//	 if((isBlue && vn<0)||(!isBlue && vn>0))return ERR_ACTIVE;//ä¸»åŠ¨å­ä¸ºå¯¹æ–¹å­
 	 byte vm=getItem(m);
-	 //ÒÆ×Ó
+	 //ç§»å­
 	 if(vm==EMPTY) {
 		 if(!neighborhood(n, m))return ERR_ROUTE;
 		 setItem(n,EMPTY);
 		 setItem(m,vn);
 		 return SUCC_MOV;
 	 }
-	 //±»¶¯×ÓÎªÎÒ·½×Ó
+	 //è¢«åŠ¨å­ä¸ºæˆ‘æ–¹å­
 //	 if((isBlue && vm>0)||(!isBlue && vm<0))return ERR_PASSIVE;
-	 //ÅÚ³Ô×Ó
+	 //ç‚®åƒå­
 	 if(Math.abs(vn)==I6) {
 		 if(!seperated(n, m))return ERR_ROUTE;
 		 setItem(n,EMPTY);
 		 setItem(m,vn);
 		 return SUCC_MOV;
 	 }
-	 //±»¶¯×ÓÎªÎ´·­×Ó
+	 //è¢«åŠ¨å­ä¸ºæœªç¿»å­
 	 if(vm==COVERED)return ERR_PASSIVE;
-	 //ÊÇ·ñ¿É´ï
+	 //æ˜¯å¦å¯è¾¾
 	 if(!neighborhood(n, m))return ERR_ROUTE;
-	 //¶Ò×Ó
+	 //å…‘å­
 	 if(-vm==vn) {
 		 setItem(n,EMPTY);
 		 setItem(m,EMPTY);
 		 return SUCC_GONE;
 	 }
-	 //³Ô×Ó
-	 if(Math.abs(vn)==I0) {//Ö÷¶¯×ÓÊÇ±ø×ä,
-		 if(Math.abs(vm)==I1) {//¿É±»¶¯×Ó½«Ë§
+	 //åƒå­
+	 if(Math.abs(vn)==I0) {//ä¸»åŠ¨å­æ˜¯å…µå’,
+		 if(Math.abs(vm)==I1) {//å¯è¢«åŠ¨å­å°†å¸…
 			 setItem(n,EMPTY);
 			 setItem(m,vn);
 			 return SUCC_MOV;
-		 }else {//±»¶¯×Ó²»ÊÇ½«Ë§£¬²»ÄÜ³Ô
+		 }else {//è¢«åŠ¨å­ä¸æ˜¯å°†å¸…ï¼Œä¸èƒ½åƒ
 			 return ERR_VALUE;
 		 }
 	 }
-	 if(Math.abs(vn)==I1 && Math.abs(vm)==I0) {//Ö÷¶¯×ÓÊÇË§½«,±»¶¯×ÓÊÇ±ø×ä£¬²»ÄÜ³Ô
+	 if(Math.abs(vn)==I1 && Math.abs(vm)==I0) {//ä¸»åŠ¨å­æ˜¯å¸…å°†,è¢«åŠ¨å­æ˜¯å…µå’ï¼Œä¸èƒ½åƒ
 		 return ERR_VALUE;
 	 }
-	 //ÆäËûÇé¿öÏÂ
-	 if(Math.abs(vn)<Math.abs(vm)) {//Ö÷¶¯×Ó¿ÉÒÔ³Ô±»¶¯×Ó
+	 //å…¶ä»–æƒ…å†µä¸‹
+	 if(Math.abs(vn)<Math.abs(vm)) {//ä¸»åŠ¨å­å¯ä»¥åƒè¢«åŠ¨å­
 		 setItem(n,EMPTY);
 		 setItem(m,vn);
 		 return SUCC_MOV;
-	 }else {//Ö÷¶¯×ÓÎŞ·¨³Ô±»¶¯×Ó
+	 }else {//ä¸»åŠ¨å­æ— æ³•åƒè¢«åŠ¨å­
 		 return ERR_VALUE;
 	 }
  }
- /**¶ÁÈ¡Î»ÖÃÉÏµÄÆå×Ó**/
+ /**è¯»å–ä½ç½®ä¸Šçš„æ£‹å­**/
  public byte getItem(byte n){
    return this.table[n];
  }
- /**ÉèÖÃÎ»ÖÃÉÏµÄÆå×Ó**/
+ /**è®¾ç½®ä½ç½®ä¸Šçš„æ£‹å­**/
  public void setItem(byte n,byte v){
    this.table[n]=v;
    System.out.println("setItem:"+Arrays.toString(this.table));
  }
- /**Á½Î»ÖÃÊÇ·ñÏàÁÚ**/
+ /**ä¸¤ä½ç½®æ˜¯å¦ç›¸é‚»**/
  public boolean neighborhood(byte n,byte m){
    byte d=(byte)(n-m);
-   if(d==0)return false;//Í¬Ò»¸öÎ»ÖÃ
-   if(n==0){ if(m==1||m==W)return true;else return false;}   //×óÉÏ½Ç
-   if(n==W-1){ if(m==W-2||d==-W)return true;else return false;}   //ÓÒÉÏ½Ç
-   if(n==H*(W-1)){ if(d==W||d==-1)return true;else return false;}   //×óÏÂ½Ç
-   if(n==H*W-1){ if(d==1||d==W)return true;else return false;}   //ÓÒÏÂ½Ç
-   if(n>0&&n<W-1){ if(d==-W || d==1 || d==-1)return true;else return false; } //ÉÏ±ß
-   if(n>H*(W-1)&&n<H*W-1){ if(d==W || d==1 || d==-1)return true;else return false; } //ÏÂ±ß
-   if(n%W==0){ if(d==-1 || d==W || d==-W)return true;else return false; } //×ó±ß
-   if(n%W==W-1){ if(d==1 || d==W || d==-W)return true;else return false; } //ÓÒ±ß
-   //ËÄÖÜ¾ù¿ÕÊ±
-   if(d==-1||d==1)return true;//Ç°ºóÏàÁÚ
-   if(d==-W||d==W)return true;//ÉÏÏÂÏàÁÚ
+   if(d==0)return false;//åŒä¸€ä¸ªä½ç½®
+   if(n==0){ if(m==1||m==W)return true;else return false;}   //å·¦ä¸Šè§’
+   if(n==W-1){ if(m==W-2||d==-W)return true;else return false;}   //å³ä¸Šè§’
+   if(n==H*(W-1)){ if(d==W||d==-1)return true;else return false;}   //å·¦ä¸‹è§’
+   if(n==H*W-1){ if(d==1||d==W)return true;else return false;}   //å³ä¸‹è§’
+   if(n>0&&n<W-1){ if(d==-W || d==1 || d==-1)return true;else return false; } //ä¸Šè¾¹
+   if(n>H*(W-1)&&n<H*W-1){ if(d==W || d==1 || d==-1)return true;else return false; } //ä¸‹è¾¹
+   if(n%W==0){ if(d==-1 || d==W || d==-W)return true;else return false; } //å·¦è¾¹
+   if(n%W==W-1){ if(d==1 || d==W || d==-W)return true;else return false; } //å³è¾¹
+   //å››å‘¨å‡ç©ºæ—¶
+   if(d==-1||d==1)return true;//å‰åç›¸é‚»
+   if(d==-W||d==W)return true;//ä¸Šä¸‹ç›¸é‚»
    return false;
  }
- /**Á½Î»ÖÃÊÇÔÚÒ»ÌõÖ±ÏßÉÏ**/
+ /**ä¸¤ä½ç½®æ˜¯åœ¨ä¸€æ¡ç›´çº¿ä¸Š**/
  private boolean linear(byte n,byte m){
-   if(n==m)return false;//²»ÄÜÊÇÍ¬Ò»¸öÎ»ÖÃ
-   if(neighborhood(n,m))return false;//²»ÄÜÏàÁÚ
-   if(n/W==m/W)return true;//ºáÏßÉÏ
-   if(n%W==m%W)return true;//×İÏßÉÏ
-   return false;//ÆäËûÇé¿ö
+   if(n==m)return false;//ä¸èƒ½æ˜¯åŒä¸€ä¸ªä½ç½®
+   if(neighborhood(n,m))return false;//ä¸èƒ½ç›¸é‚»
+   if(n/W==m/W)return true;//æ¨ªçº¿ä¸Š
+   if(n%W==m%W)return true;//çºµçº¿ä¸Š
+   return false;//å…¶ä»–æƒ…å†µ
  }
- /**Á½Î»ÖÃÖĞ¼äÊÇ·ñÓĞÒ»×Ó×è¸ô**/
+ /**ä¸¤ä½ç½®ä¸­é—´æ˜¯å¦æœ‰ä¸€å­é˜»éš”**/
  public boolean seperated(byte n,byte m){
    if(!linear(n,m))return false;
    byte from=0;byte to=0;
-   byte count=0;//×è¸ôµÄÆå×Ó¸öÊı
-   if(n<m){ from=n;to=m; }else{ from=m;to=n; }//Ğ¡µÄÔÚÇ°´óµÄÔÚºó
-   if(n/W==m/W){ //Î»ÓÚºáÏßÊ±
+   byte count=0;//é˜»éš”çš„æ£‹å­ä¸ªæ•°
+   if(n<m){ from=n;to=m; }else{ from=m;to=n; }//å°çš„åœ¨å‰å¤§çš„åœ¨å
+   if(n/W==m/W){ //ä½äºæ¨ªçº¿æ—¶
      for(int i=from+1;i<to;i++){
-      if(table[i]!=EMPTY)count++;//ÓĞÆå×Ó¾ÍÀÛ¼Æ
+      if(table[i]!=EMPTY)count++;//æœ‰æ£‹å­å°±ç´¯è®¡
      }
-     if(count==1)return true;//¶şÕßÖ®¼äÖ»ÄÜÓĞÒ»¸ö×Ó
+     if(count==1)return true;//äºŒè€…ä¹‹é—´åªèƒ½æœ‰ä¸€ä¸ªå­
      else return false;
    }
-   if(n%W==m%W){ //Î»ÓÚÊúÏßÊ±
+   if(n%W==m%W){ //ä½äºç«–çº¿æ—¶
      for(int i=from+W;i<to;i+=W){
-      if(table[i]!=EMPTY)count++;//ÓĞÆå×Ó¾ÍÀÛ¼Æ
+      if(table[i]!=EMPTY)count++;//æœ‰æ£‹å­å°±ç´¯è®¡
      }
-     if(count==1)return true;//¶şÕßÖ®¼äÖ»ÄÜÓĞÒ»¸ö×Ó
+     if(count==1)return true;//äºŒè€…ä¹‹é—´åªèƒ½æœ‰ä¸€ä¸ªå­
      else return false;
    }
-   //²»»áÖ´ĞĞµ½ÕâÀïµÄ
+   //ä¸ä¼šæ‰§è¡Œåˆ°è¿™é‡Œçš„
    return false;
  }
  

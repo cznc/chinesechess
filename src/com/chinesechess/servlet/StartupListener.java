@@ -9,7 +9,7 @@ import com.chinesechess.core.SceneCenter;
 
 /**
  * Application Lifecycle Listener implementation class InitListener
- * ³õÊ¼»¯
+ * åˆå§‹åŒ–
  */
 @WebListener
 public class StartupListener implements ServletContextListener {

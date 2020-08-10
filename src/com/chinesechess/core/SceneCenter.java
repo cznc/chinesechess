@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /***
- * ÆåÅÌÖĞĞÄ
- * Ò»¸öÓÃ»§Ö»ÄÜ½øÒ»¸öÆåÅÌ;¿ÉÒÔ×÷Îªºì·½¡¢À¶·½¡¢¹Û¿´Õß;
+ * æ£‹ç›˜ä¸­å¿ƒ
+ * ä¸€ä¸ªç”¨æˆ·åªèƒ½è¿›ä¸€ä¸ªæ£‹ç›˜;å¯ä»¥ä½œä¸ºçº¢æ–¹ã€è“æ–¹ã€è§‚çœ‹è€…;
  * */
 public class SceneCenter implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,25 +16,25 @@ public class SceneCenter implements Serializable{
 	private Map<Integer, Scene> centerByUser=new HashMap<Integer, Scene>();
 	private Map<Integer, Scene> centerById=new HashMap<Integer, Scene>();
 	/**
-	 * »ñÈ¡ÆåÅÌ
+	 * è·å–æ£‹ç›˜
 	 * */
 	public Scene getByUserId(int userid) {
 		return centerById.get(userid);
 	}
 	/**
-	 * »ñÈ¡ÆåÅÌ
+	 * è·å–æ£‹ç›˜
 	 * */
 	public Scene getById(int id) {
 		return centerById.get(id);
 	}
 	/**
-	 * ÓĞÈË¼ÓÈëµ½ÆåÅÌ
+	 * æœ‰äººåŠ å…¥åˆ°æ£‹ç›˜
 	 * */
 	public Scene add2Scene(int id, int userid) {
 		Scene scene=getById(id);
 		if(scene==null)return null;
 		if(centerByUser.containsKey(id))return scene;
-//		if(scene.players[1]!=0)return scene;//ÒÑ¾­ÈËÂú,²»ÄÜ¼ÓÈë
+//		if(scene.players[1]!=0)return scene;//å·²ç»äººæ»¡,ä¸èƒ½åŠ å…¥
 //		scene.players[1]=userid;
 		scene.addPeople(userid);
 //		scene.last=(int)(System.currentTimeMillis()/1000);
@@ -42,7 +42,7 @@ public class SceneCenter implements Serializable{
 		return scene;
 	}
 	/**
-	 * ÍË³öÆåÅÌ
+	 * é€€å‡ºæ£‹ç›˜
 	 * */
 	public void quitScene(int userid) {
 		Scene scene=getByUserId(userid);
@@ -55,7 +55,7 @@ public class SceneCenter implements Serializable{
 		}
 	}
 	/**
-	 * ĞÂ½¨ÆåÅÌ
+	 * æ–°å»ºæ£‹ç›˜
 	 * */
 	public int createScene(int userid) {
 		sceneIdSeqence++;

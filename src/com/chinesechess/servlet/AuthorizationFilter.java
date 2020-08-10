@@ -49,7 +49,7 @@ public class AuthorizationFilter implements Filter {
 		String path=request.getServletPath();
 		User user= (User)request.getSession().getAttribute(ConstantEnv.SESSION_ATTR_USER);
 		if(user==null && !"/login".equals(path)) {
-			Response cmd=ResponseUtil.build(null,Constant.RESPONSE_LOGIN,"Î´µÇÂ¼ÇëÏÈµÇÂ¼");
+			Response cmd=ResponseUtil.build(null,Constant.RESPONSE_LOGIN,"æœªç™»å½•è¯·å…ˆç™»å½•");
 			String json = ResponseUtil.toJson(cmd);
 			response.getWriter().append(json);
 			return;

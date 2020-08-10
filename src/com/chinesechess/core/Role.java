@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
- * Íæ¼ÒÔÚÆåÅÌÖĞ×÷Îª½ÇÉ«µÄÏà¹ØÊôĞÔ <br/>
- * Éè¼Æ³ÉµÚÒ»¸ö½øÈëµÄÓÃ»§ÎªºìÉ«,µÚ¶ş¸öÎªÀ¶É«, Ö®ºó½øÈëµÄÎª¹Û¿´Õß;<br/> 
- * ´úÌæ·­×Ó¾ö¶¨ÄÄÒ»·½µÄÂß¼­ ¼ò»¯ÁËÉè¼Æ<br/>
+ * ç©å®¶åœ¨æ£‹ç›˜ä¸­ä½œä¸ºè§’è‰²çš„ç›¸å…³å±æ€§ <br/>
+ * è®¾è®¡æˆç¬¬ä¸€ä¸ªè¿›å…¥çš„ç”¨æˆ·ä¸ºçº¢è‰²,ç¬¬äºŒä¸ªä¸ºè“è‰², ä¹‹åè¿›å…¥çš„ä¸ºè§‚çœ‹è€…;<br/> 
+ * ä»£æ›¿ç¿»å­å†³å®šå“ªä¸€æ–¹çš„é€»è¾‘ ç®€åŒ–äº†è®¾è®¡<br/>
  */
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +20,7 @@ public class Role implements Serializable {
 	}
 
 	byte color;
-	// ´æ·ÅÆäËûÍæ¼ÒµÄÖ¸Áî
+	// å­˜æ”¾å…¶ä»–ç©å®¶çš„æŒ‡ä»¤
 	LinkedList<Response> cmdList = new LinkedList<Response>();
 	
 	public static void main(String[] args) {

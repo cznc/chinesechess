@@ -10,24 +10,24 @@ import java.util.Map;
 import com.chinesechess.core.util.ResponseUtil;
 
 /**
- * Ò»¾Ö¶ÔŞÄ
+ * ä¸€å±€å¯¹å¼ˆ
  */
 public class Scene  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	int id;
 	/**
-	 * »¹°üÀ¨¹Û¿´Õß,ËùÒÔÕâ¸ö½á¹¹ÖĞÔÊĞí³¬¹ıN¸öÓÃ»§
+	 * è¿˜åŒ…æ‹¬è§‚çœ‹è€…,æ‰€ä»¥è¿™ä¸ªç»“æ„ä¸­å…è®¸è¶…è¿‡Nä¸ªç”¨æˆ·
 	 */
 	Map<Integer, Role> peopleMap = new HashMap<Integer, Role>();
-	int[] players=new int[2];// Á½¸öÍæ¼Ò
-	byte turnIndex; // µ±Ç°ÂÖµ½Ë­
-//	int last; // ×îºó×ßµÄÊ±¼ä,µ¥Î»Ãë,ÓÃÀ´¼ÆËã³¬Ê±Óë·ñ
-	byte status;// ×´Ì¬: 0Î´½øĞĞ£¬1ÕıÔÚ½øĞĞ£¬2ÒÑ½áÊø
+	int[] players=new int[2];// ä¸¤ä¸ªç©å®¶
+	byte turnIndex; // å½“å‰è½®åˆ°è°
+//	int last; // æœ€åèµ°çš„æ—¶é—´,å•ä½ç§’,ç”¨æ¥è®¡ç®—è¶…æ—¶ä¸å¦
+	byte status;// çŠ¶æ€: 0æœªè¿›è¡Œï¼Œ1æ­£åœ¨è¿›è¡Œï¼Œ2å·²ç»“æŸ
 	Pannel chess=new Pannel();
 	public Pannel getChess() {return chess;}
 	/**
-	 * ÏÂÍêÒ»²½,¼´¹ã²¥µ±Ç°ÃüÁî¸ø¶Ô·½;¶Ô·½¶¨Ê±»á»ñÈ¡
+	 * ä¸‹å®Œä¸€æ­¥,å³å¹¿æ’­å½“å‰å‘½ä»¤ç»™å¯¹æ–¹;å¯¹æ–¹å®šæ—¶ä¼šè·å–
 	 * **/
 	public void broadcast(Integer userid, Response cmd) {
 		if(!ResponseUtil.isCommandPermit(cmd))return;
@@ -38,7 +38,7 @@ public class Scene  implements Serializable{
 		}
 	}
 	/**
-	 * »ñÈ¡¶Ô·½µÄ×ß×ÓÖ¸ÁîÒÔ¼°ÏµÍ³ÏûÏ¢
+	 * è·å–å¯¹æ–¹çš„èµ°å­æŒ‡ä»¤ä»¥åŠç³»ç»Ÿæ¶ˆæ¯
 	 * */
 	public List<Response>popCommad(Integer userid){
 		List<Response>list=new ArrayList<Response>();
@@ -50,13 +50,13 @@ public class Scene  implements Serializable{
 		return list;
 	}
 	/**
-	 * ²éÑ¯ÊÇ·ñÂÖµ½µ±Ç°ÓÃ»§×ß×Ó
+	 * æŸ¥è¯¢æ˜¯å¦è½®åˆ°å½“å‰ç”¨æˆ·èµ°å­
 	 */
 	public boolean isMyTurn(int userID) {
 		return players[turnIndex] == userID;
 	}
 	/**
-	 * µ±Ç°ÓÃ»§×ß×ÓÍê±Ï
+	 * å½“å‰ç”¨æˆ·èµ°å­å®Œæ¯•
 	 */
 	public void finishedMyTurn(int userID) {
 		if( players[turnIndex] != userID) return;
@@ -64,7 +64,7 @@ public class Scene  implements Serializable{
 		turnIndex%=2;
 	}
 	/**
-	 * ÓÃ»§¼ÓÈëÆåÅÌ
+	 * ç”¨æˆ·åŠ å…¥æ£‹ç›˜
 	 * */
 	public void addPeople(int userid) {
 		if(peopleMap.containsKey(userid))return;
@@ -80,10 +80,10 @@ public class Scene  implements Serializable{
 		if(players[0]!=0&&players[1]!=0) {
 			status = Constant.SCENE_RUNNING;
 		}
-		//¹ã²¥ÏûÏ¢
+		//å¹¿æ’­æ¶ˆæ¯
 	}
 	/**
-	 * ÓÃ»§ÍË³öÆåÅÌ
+	 * ç”¨æˆ·é€€å‡ºæ£‹ç›˜
 	 * */
 	public void quitPeople(int userid) {
 		Role role = peopleMap.get(userid);
@@ -96,10 +96,10 @@ public class Scene  implements Serializable{
 			status = Constant.SCENE_NEW;
 		}
 		peopleMap.remove(userid);
-		//¹ã²¥ÏûÏ¢
+		//å¹¿æ’­æ¶ˆæ¯
 	}
 //	/**
-//	 * ÂÖµ½¶Ô·½×ß×Ó£¬µ«ÊÇ¶Ô·½Ã»¶¯¾²£¬³¬¹ı10Ãë£¬¾ÍËã³¬Ê±£»ÊÇ·ñ³¬Ê±£»
+//	 * è½®åˆ°å¯¹æ–¹èµ°å­ï¼Œä½†æ˜¯å¯¹æ–¹æ²¡åŠ¨é™ï¼Œè¶…è¿‡10ç§’ï¼Œå°±ç®—è¶…æ—¶ï¼›æ˜¯å¦è¶…æ—¶ï¼›
 //	 */
 //	public boolean isTimeout() {
 //		if (System.currentTimeMillis() / 1000 - last > 10) {
@@ -109,7 +109,7 @@ public class Scene  implements Serializable{
 //	}
 
 	/**
-	 * ²éÑ¯×Ô¼ºÊÇºìÉ«»¹ÊÇÀ¶É«
+	 * æŸ¥è¯¢è‡ªå·±æ˜¯çº¢è‰²è¿˜æ˜¯è“è‰²
 	 */
 	public byte getUserColor(int userid) {
 		return peopleMap.get(userid).color;

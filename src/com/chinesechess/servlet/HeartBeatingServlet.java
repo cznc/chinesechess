@@ -19,7 +19,7 @@ import com.chinesechess.core.User;
 import com.chinesechess.core.util.ResponseUtil;
 
 /**
- * 获取异步指令,对方的执行，系统消息
+ * 鑾峰彇寮傛鎸囦护,瀵规柟鐨勬墽琛岋紝绯荤粺娑堟伅
  */
 @WebServlet("/api/hb")
 public class HeartBeatingServlet extends HttpServlet {

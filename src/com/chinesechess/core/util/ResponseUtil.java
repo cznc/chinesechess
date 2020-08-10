@@ -39,7 +39,7 @@ public class ResponseUtil {
 		return json;
 	}
 	/**
-	 * Íæ¼ÒÖ¸ÁîÊÇ·ñÊÇÔÊĞíÖ´ĞĞ; ÔÊĞíÖ´ĞĞµÄÖ¸Áî, ²ÅĞèÒª¸æÖªÆäËûÍæ¼ÒÒ²ÒªÖØ·Å
+	 * ç©å®¶æŒ‡ä»¤æ˜¯å¦æ˜¯å…è®¸æ‰§è¡Œ; å…è®¸æ‰§è¡Œçš„æŒ‡ä»¤, æ‰éœ€è¦å‘ŠçŸ¥å…¶ä»–ç©å®¶ä¹Ÿè¦é‡æ”¾
 	 * */
 	public static final boolean isCommandPermit(Response resp) {
 		if(resp.getStatus()==Constant.RESPONSE_FAILED)return false;

@@ -2,14 +2,14 @@ package com.chinesechess.core;
 
 import java.io.Serializable;
 /**
- * ÆìÊÖÖ¸Áî½á¹û
+ * æ——æ‰‹æŒ‡ä»¤ç»“æœ
  * */
 public class Response implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	Command myCommand;// Ö¸Áî
-	byte status; // 0=Ö¸Áî±»ÔÊĞí,1=Ö¸Áî²»±»ÔÊĞí,2=ÎŞĞ§Ö¸Áî,3=ÎÒ·½Êä,4=¶Ô·½Êä,5=¶Ô·½ÍË³ö
-	// final byte[][]table;//Èç¹ûÓĞĞèÒª,²»¶¨ÆÚÍ¬²½µ±Ç°ÆåÆ×,½ÃÕı¿ÉÄÜ´æÔÚµÄ²»Í¬²½Òì³£;
+	Command myCommand;// æŒ‡ä»¤
+	byte status; // 0=æŒ‡ä»¤è¢«å…è®¸,1=æŒ‡ä»¤ä¸è¢«å…è®¸,2=æ— æ•ˆæŒ‡ä»¤,3=æˆ‘æ–¹è¾“,4=å¯¹æ–¹è¾“,5=å¯¹æ–¹é€€å‡º
+	// final byte[][]table;//å¦‚æœæœ‰éœ€è¦,ä¸å®šæœŸåŒæ­¥å½“å‰æ£‹è°±,çŸ«æ­£å¯èƒ½å­˜åœ¨çš„ä¸åŒæ­¥å¼‚å¸¸;
 	String msg;
 	public Command getMyCommand() {
 		return myCommand;

@@ -18,7 +18,7 @@ import com.chinesechess.core.User;
 import com.chinesechess.core.util.ResponseUtil;
 
 /**
- * ´´½¨Æå¾Ö¡¢¼ÓÈëÍË³öÆå¾ÖµÈ¶¯×÷
+ * åˆ›å»ºæ£‹å±€ã€åŠ å…¥é€€å‡ºæ£‹å±€ç­‰åŠ¨ä½œ
  */
 @WebServlet("/api/mng")
 public class MngServlet extends HttpServlet {

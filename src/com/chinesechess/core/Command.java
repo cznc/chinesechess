@@ -1,13 +1,13 @@
 package com.chinesechess.core;
 
 /**
- * ÆåÊÖÖ¸Áî
+ * æ£‹æ‰‹æŒ‡ä»¤
  */
 public class Command {
-	byte sessionId;// ÄÄ¸ö¶ÔŞÄ;Ö§³ÖÒ»ÈËÍ¬Ê±¿ª¶à¾Ö¶ÔŞÄ,×î¶à256¾Ö
-	byte action; // 0=·­Æå,1=×ßÒ»²½,2=ÈÏÊä,3=ÍË³ö
-	byte from; // Ô´Î»ÖÃ
-	byte to; // Ä¿±êÎ»ÖÃ
+	byte sessionId;// å“ªä¸ªå¯¹å¼ˆ;æ”¯æŒä¸€äººåŒæ—¶å¼€å¤šå±€å¯¹å¼ˆ,æœ€å¤š256å±€
+	byte action; // 0=ç¿»æ£‹,1=èµ°ä¸€æ­¥,2=è®¤è¾“,3=é€€å‡º
+	byte from; // æºä½ç½®
+	byte to; // ç›®æ ‡ä½ç½®
 
 	public byte getSessionId() {
 		return sessionId;

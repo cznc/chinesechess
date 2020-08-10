@@ -44,8 +44,8 @@ public class InitServlet extends HttpServlet {
 		byte[] table=chess.getTable();
 		Map<String,Object>data=new HashMap<String,Object>();
 		data.put("table", table);
-		data.put("color", scene.getUserColor(user.getId()));//ÎÒµÄÊÇÄÄ¸öÑÕÉ«
-		data.put("turn", scene.isMyTurn(user.getId()));//ÊÇ²»ÊÇ¸ÃÎÒ×ßÆåÁË
+		data.put("color", scene.getUserColor(user.getId()));//æˆ‘çš„æ˜¯å“ªä¸ªé¢œè‰²
+		data.put("turn", scene.isMyTurn(user.getId()));//æ˜¯ä¸æ˜¯è¯¥æˆ‘èµ°æ£‹äº†
 		
 		String json = ResponseUtil.toJson(data);
 		response.getWriter().append(json);

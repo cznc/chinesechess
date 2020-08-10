@@ -4,20 +4,20 @@ public interface Constant {
 	public byte ACTION_STEP_DISCONVER=0;
 	public byte ACTION_STEP_OTHERS=1;
 	
-//	0=Ö¸Áî±»ÔÊĞí,1=Ö¸Áî²»±»ÔÊĞí,2=ÎŞĞ§Ö¸Áî,3=ÎÒ·½Êä,4=¶Ô·½Êä,5=¶Ô·½ÍË³ö
+//	0=æŒ‡ä»¤è¢«å…è®¸,1=æŒ‡ä»¤ä¸è¢«å…è®¸,2=æ— æ•ˆæŒ‡ä»¤,3=æˆ‘æ–¹è¾“,4=å¯¹æ–¹è¾“,5=å¯¹æ–¹é€€å‡º
 	public byte RESPONSE_SUCCESS=0;
 	public byte RESPONSE_FAILED=1;
 	public byte RESPONSE_INVALID=2;
 	public byte RESPONSE_LOSS0=3;
 	public byte RESPONSE_LOSS1=4;
 	public byte RESPONSE_QUIT=5;
-	/**Î´µÇÂ¼*/
+	/**æœªç™»å½•*/
 	public byte RESPONSE_LOGIN=(byte)255;
-	//byte status;// ×´Ì¬: 0Î´½øĞĞ£¬1ÕıÔÚ½øĞĞ£¬2ÒÑ½áÊø
+	//byte status;// çŠ¶æ€: 0æœªè¿›è¡Œï¼Œ1æ­£åœ¨è¿›è¡Œï¼Œ2å·²ç»“æŸ
 	public byte SCENE_NEW=0;
 	public byte SCENE_RUNNING=1;
 	public byte SCENE_FINISHED=2;
-	//Î´Öª,ºì·½,À¶·½
+	//æœªçŸ¥,çº¢æ–¹,è“æ–¹
 	public byte ROLE_COLORE_NONE=0;
 	public byte ROLE_COLORE_RED=1;
 	public byte ROLE_COLORE_BLUE=2;
